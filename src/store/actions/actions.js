@@ -31,7 +31,20 @@ export const subtract = (value) => {
   };
 };
 
+export const saveResult = ( res ) => {
+  return {
+    type: STORE_RESULT,
+    result: res
+  }
+}
+
 export const storeResult = (res) => {
+  // We want to simulate that we only store results after 2 seconds of reaching out to a server
+  return dispatch => {
+    setTimeout( () => {
+      dispatch(saveResult(res));
+    }, 2000);
+  }
   return {
     type: STORE_RESULT,
     result: res
